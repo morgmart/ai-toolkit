@@ -1,0 +1,11 @@
+{
+  "rules": [
+    {
+      "rulesPaths": "ai-rules/.generated-ai-rules/ai-rules-generated-toolkit.md"
+    },
+    {
+      "rulesPaths": "ai-rules/.generated-ai-rules/ai-rules-generated-optional.md"
+    }
+  ],
+  "useCursorRules": false
+}
