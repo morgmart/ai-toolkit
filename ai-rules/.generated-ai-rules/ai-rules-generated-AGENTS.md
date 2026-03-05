@@ -68,12 +68,36 @@ When adding new content:
 4. Test the workflow to ensure instructions are complete and unambiguous
 5. Consider edge cases and error recovery paths
 
+## Deploying to a New Project
+
+To activate these rules in any project, copy the `ai-rules/` source directory into that project and regenerate:
+
+```bash
+cp -r ~/Development/ai-toolkit/ai-rules /path/to/your-project/ai-rules
+cd /path/to/your-project
+sq ai-rules generate
+```
+
+This creates tool-specific files (`CLAUDE.md`, `AGENTS.md`, `.cursor/rules/`, etc.) in that project directory.
+
+For Claude Code global context (applies across all projects), `~/.claude/CLAUDE.md` is symlinked to `~/Development/ai-toolkit/CLAUDE.md`. Any changes here take effect immediately.
+
+## Adding a New Rule (Cross-Tool)
+
+1. Create `ai-rules/<rule-name>.md` with YAML frontmatter (`description`, `alwaysApply`)
+2. Run `sq ai-rules generate` from `~/Development/ai-toolkit/`
+3. Commit and push
+
+## Adding a New Claude Skill
+
+1. Create `claude/skills/<skill-name>/SKILL.md`
+2. Symlink it: `ln -s ~/Development/ai-toolkit/claude/skills/<skill-name> ~/.claude/skills/<skill-name>`
+3. Commit and push
+
 ## Git Workflow
 
-Based on repository history:
 - Commit messages should be clear and descriptive
-- Initial commit pattern: "Initial commit: [description of contents]"
-- TODO: Verify commit conventions as more history accumulates
+- Run `sq ai-rules generate` before committing whenever `ai-rules/*.md` files change
 
 # Rules
 
